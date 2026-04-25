@@ -1,105 +1,14 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Belém | IA na Prática</title>
-  <meta name="description" content="Material online da imersão IA na Prática em Belém: Vibe Coding, Dados e Automações Simples." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg:#f6f8ff; --ink:#172033; --muted:#667085; --line:#e4e9f5; --card:#ffffff;
-      --blue:#2557ff; --cyan:#16c7d9; --purple:#7c3aed; --green:#19b36b; --dark:#101828;
-      --shadow:0 22px 70px rgba(20,32,62,.12); --radius:28px;
-    }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; font-family:Inter,system-ui,sans-serif; color:var(--ink); background:radial-gradient(circle at 8% 0%, rgba(37,87,255,.16), transparent 28%),radial-gradient(circle at 92% 6%, rgba(22,199,217,.18), transparent 26%),linear-gradient(180deg,#fbfcff 0%,#edf3ff 100%); }
-    .wrap { width:min(1180px,calc(100% - 32px)); margin:0 auto; padding:28px 0 70px; }
-    .top { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:18px; }
-    .brand { display:flex; align-items:center; gap:12px; font-weight:900; color:var(--dark); }
-    .mark { width:42px; height:42px; border-radius:14px; background:linear-gradient(135deg,var(--blue),var(--cyan)); box-shadow:0 14px 30px rgba(37,87,255,.25); }
-    .pill { display:inline-flex; gap:8px; align-items:center; padding:10px 14px; border-radius:999px; background:#fff; border:1px solid var(--line); color:var(--muted); font-size:14px; box-shadow:0 8px 24px rgba(20,32,62,.06); }
-    .hero { position:relative; overflow:hidden; background:var(--card); border:1px solid var(--line); border-radius:34px; padding:40px; box-shadow:var(--shadow); }
-    .hero:after { content:""; position:absolute; inset:auto -120px -160px auto; width:420px; height:420px; background:linear-gradient(135deg,rgba(37,87,255,.20),rgba(22,199,217,.24)); border-radius:999px; filter:blur(4px); }
-    .kicker,.section-kicker { color:var(--blue); text-transform:uppercase; letter-spacing:.16em; font-size:12px; font-weight:900; }
-    h1 { margin:12px 0 14px; max-width:900px; font-size:clamp(40px,7vw,82px); line-height:.90; letter-spacing:-.065em; color:var(--dark); }
-    .subtitle { max-width:760px; color:var(--muted); font-size:19px; line-height:1.58; }
-    .hero-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:22px; margin-top:28px; position:relative; z-index:1; }
-    .method { background:#101828; color:#fff; border-radius:28px; padding:24px; display:grid; gap:16px; }
-    .method h2 { margin:0; color:#fff; font-size:30px; letter-spacing:-.04em; }
-    .layers { display:grid; gap:10px; }
-    .layer { padding:14px 16px; border-radius:18px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.10); }
-    .layer strong { display:block; color:#fff; }
-    .layer span { color:#c7d7fe; font-size:14px; }
-    .chips { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
-    .chip { padding:10px 12px; border-radius:999px; font-weight:700; color:#123; background:#eef6ff; border:1px solid #d7e6ff; }
-    .agenda-card,.doc-card { margin-top:22px; background:rgba(255,255,255,.92); border:1px solid var(--line); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow); }
-    .agenda-card h2,.doc-card h2 { margin:10px 0 16px; color:var(--dark); font-size:34px; letter-spacing:-.04em; }
-    .agenda-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; list-style:none; padding:0; margin:0; }
-    .agenda-list li { display:flex; gap:14px; align-items:flex-start; padding:16px; border:1px solid var(--line); border-radius:20px; background:#fbfcff; }
-    .agenda-list span { flex:0 0 auto; width:42px; height:42px; border-radius:14px; display:grid; place-items:center; background:linear-gradient(135deg,var(--blue),var(--cyan)); color:#fff; font-weight:900; }
-    .agenda-list p { margin:0; color:var(--ink); font-weight:650; line-height:1.45; }
-    .doc-card h2 { border-top:1px solid var(--line); padding-top:22px; }
-    .doc-card h2:first-of-type { border-top:0; padding-top:0; }
-    .doc-card h3 { margin:28px 0 10px; color:var(--dark); font-size:26px; letter-spacing:-.03em; }
-    .doc-card h4,.doc-card h5 { color:var(--blue); margin:22px 0 8px; }
-    p,li { color:#475467; line-height:1.7; font-size:16px; }
-    ul,ol { padding-left:22px; }
-    li { margin:7px 0; }
-    blockquote { margin:20px 0; padding:20px 22px; border-left:5px solid var(--blue); background:linear-gradient(90deg,rgba(37,87,255,.08),rgba(22,199,217,.06)); border-radius:18px; }
-    blockquote p { margin:0 0 10px; color:var(--dark); font-size:18px; font-weight:700; }
-    code { background:#eef4ff; border:1px solid #dce8ff; padding:2px 6px; border-radius:7px; color:#1947d2; }
-    strong { color:var(--dark); }
-    .footer { text-align:center; color:var(--muted); margin-top:28px; }
-    @media(max-width:880px) { .wrap { width:min(100% - 20px,1180px); padding-top:16px; } .top { align-items:flex-start; flex-direction:column; } .hero { padding:26px; border-radius:26px; } .hero-grid,.agenda-list { grid-template-columns:1fr; } .doc-card,.agenda-card { padding:22px; border-radius:24px; } .doc-card h2,.agenda-card h2 { font-size:28px; } }
-    @media print { body { background:white; } .top { display:none; } .hero,.agenda-card,.doc-card { box-shadow:none; } }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <div class="top">
-      <div class="brand"><span class="mark"></span><span>IA na Prática · Belém</span></div>
-      <span class="pill">Vibe Coding · Dados · Automações Simples</span>
-    </div>
-    <header class="hero">
-      <div class="kicker">Curso / Imersão presencial</div>
-      <h1>IA na Prática</h1>
-      <p class="subtitle">Tema alinhado ao material-base do Carlos: sair do discurso de IA e construir uma solução simples, útil e conectada a dados, automações e decisões reais de negócio.</p>
-      <div class="hero-grid">
-        <div>
-          <div class="chips">
-            <span class="chip">Vibe Coding</span><span class="chip">Copiloto de construção</span><span class="chip">Dados para decisão</span><span class="chip">Automações simples</span><span class="chip">APIs</span><span class="chip">Boas práticas</span>
-          </div>
-        </div>
-        <aside class="method">
-          <div class="kicker" style="color:#7dd3fc">Método AUT3</div>
-          <h2>Processo → Automação → IA</h2>
-          <div class="layers">
-            <div class="layer"><strong>1. Processo estruturado</strong><span>Antes de qualquer tecnologia, entender como o processo realmente acontece.</span></div>
-            <div class="layer"><strong>2. Automações inteligentes</strong><span>Eliminar tarefas manuais e conectar ferramentas do dia a dia.</span></div>
-            <div class="layer"><strong>3. IA em ação</strong><span>Aplicar IA onde gera receita, velocidade, qualidade ou redução de custo.</span></div>
-          </div>
-        </aside>
-      </div>
-    </header>
-
-    <section class="agenda-card">
-      <div class="section-kicker">Agenda base do material do Carlos</div>
-      <h2>O fio condutor da aula</h2>
-      <ol class="agenda-list"><li><span>01</span><p>Vibe Coding: criando soluções com IA sem ser programador</p></li><li><span>02</span><p>IA como copiloto para pensar, testar e construir</p></li><li><span>03</span><p>Leitura e análise de dados com apoio de IA</p></li><li><span>04</span><p>Transformando dados em decisões e ações automáticas</p></li><li><span>05</span><p>Automações simples que economizam horas por semana</p></li><li><span>06</span><p>Integração entre IA, dados e ferramentas do dia a dia</p></li><li><span>07</span><p>Boas práticas para escalar sem complicar</p></li></ol>
-    </section>
-
-    <section class="doc-card"><div class="section-kicker">Roteiro operacional da imersão 6h</div><h2 id="bel-m-imers-o-6h-v4-com-did-tica-das-mentorias">Belém — Imersão 6h v4 com didática das mentorias</h2>
-<h3 id="objetivo">Objetivo</h3>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Belém · IA na Prática</title><meta name="description" content="Material independente da imersão de Belém baseado no deck IA na Prática: Vibe Coding, Dados e Automações Simples."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><style>
+:root{--bg:#f4f7ff;--paper:#fff;--ink:#111827;--muted:#667085;--line:#dce5f5;--blue:#2256ff;--blue2:#1434a4;--cyan:#10bfd4;--green:#18b26b;--shadow:0 26px 80px rgba(23,35,79,.14)}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:linear-gradient(180deg,#f8fbff,#edf4ff);color:var(--ink)}.wrap{width:min(1200px,calc(100% - 32px));margin:auto;padding:28px 0 70px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}.brand{display:flex;align-items:center;gap:12px;font-weight:900}.logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--cyan));position:relative;box-shadow:0 16px 36px rgba(34,86,255,.26)}.logo:after{content:"";position:absolute;inset:10px;border:2px solid white;border-radius:8px;transform:rotate(8deg)}.badge{padding:10px 14px;border-radius:999px;background:white;border:1px solid var(--line);color:var(--muted);font-size:14px;box-shadow:0 10px 30px rgba(23,35,79,.06)}.hero{background:var(--paper);border:1px solid var(--line);border-radius:34px;overflow:hidden;box-shadow:var(--shadow);display:grid;grid-template-columns:1.05fr .95fr}.hero-copy{padding:42px}.overline{margin:0 0 12px;color:var(--blue);font-size:12px;text-transform:uppercase;letter-spacing:.16em;font-weight:900}h1{margin:0 0 18px;font-size:clamp(44px,7vw,92px);line-height:.88;letter-spacing:-.07em}.sub{font-size:20px;line-height:1.55;color:var(--muted);max-width:720px}.hero-slide{background:#edf3ff;padding:20px;display:grid;place-items:center}.hero-slide img{width:100%;border-radius:18px;box-shadow:0 18px 44px rgba(23,35,79,.22);border:1px solid #cfd8ee}.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.chip{background:#eef4ff;border:1px solid #dbe7ff;color:#153fae;padding:10px 13px;border-radius:999px;font-weight:800;font-size:14px}.section{margin-top:22px;background:white;border:1px solid var(--line);border-radius:30px;padding:30px;box-shadow:var(--shadow)}.section h2,.content-card h2{font-size:38px;line-height:1;margin:8px 0 20px;letter-spacing:-.045em}.agenda{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.agenda li{display:flex;gap:14px;align-items:center;background:#f8fbff;border:1px solid var(--line);border-radius:18px;padding:15px}.agenda b{width:42px;height:42px;border-radius:13px;background:var(--blue);color:white;display:grid;place-items:center;flex:0 0 auto}.agenda span{font-weight:750;color:#27364f}.method{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.method-card{padding:22px;border-radius:24px;color:white;min-height:185px;display:flex;flex-direction:column;justify-content:space-between}.method-card:nth-child(1){background:#1d4ed8}.method-card:nth-child(2){background:#0891b2}.method-card:nth-child(3){background:#16a34a}.method-card h3{font-size:26px;margin:0;letter-spacing:-.04em}.method-card p{color:rgba(255,255,255,.86);margin:12px 0 0}.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}figure{margin:0;background:#f8fbff;border:1px solid var(--line);border-radius:22px;padding:12px}figure img{width:100%;display:block;border-radius:14px;border:1px solid #d1daef}figcaption{padding:10px 4px 2px;color:#475467;font-weight:800}.content-card{margin-top:22px;background:white;border:1px solid var(--line);border-radius:30px;padding:32px;box-shadow:var(--shadow)}.content-card h3{font-size:28px;margin:30px 0 10px;letter-spacing:-.035em}.content-card h4,.content-card h5{color:var(--blue);font-size:20px;margin:24px 0 8px}p,li{color:#475467;font-size:16px;line-height:1.72}ul,ol{padding-left:22px}li{margin:7px 0}blockquote{margin:20px 0;padding:20px 22px;border-left:6px solid var(--blue);background:#f0f6ff;border-radius:18px}blockquote p{font-size:18px;color:#172033;font-weight:800;margin:0 0 10px}code{background:#eef4ff;border:1px solid #d9e6ff;color:#1644c8;border-radius:7px;padding:2px 6px}strong{color:#111827}.footer{text-align:center;color:var(--muted);margin-top:28px}@media(max-width:900px){.wrap{width:min(100% - 20px,1200px);padding-top:16px}.top{align-items:flex-start;flex-direction:column}.hero{grid-template-columns:1fr}.hero-copy,.section,.content-card{padding:22px}.agenda,.method,.gallery{grid-template-columns:1fr}h1{font-size:52px}.section h2,.content-card h2{font-size:30px}}
+</style></head><body><div class="wrap"><div class="top"><div class="brand"><span class="logo"></span><span>Belém · IA na Prática</span></div><span class="badge">Base visual: material Carlos Costa / 3ADS</span></div><header class="hero"><div class="hero-copy"><p class="overline">Curso: IA na Prática</p><h1>Vibe Coding, Dados e Automações Simples</h1><p class="sub">Página independente da imersão de Belém, estruturada sobre o deck do Carlos: primeiro entender processos, depois conectar dados e automações, e só então aplicar IA onde existe ganho real.</p><div class="chips"><span class="chip">Vibe Coding</span><span class="chip">IA copiloto</span><span class="chip">Dados</span><span class="chip">APIs</span><span class="chip">Make/n8n</span><span class="chip">AUT3</span></div></div><div class="hero-slide"><img src="assets/slides/slide-01.jpg" alt="Capa do material IA na Prática"></div></header><section class="section"><p class="overline">Agenda do deck-base</p><h2>O que a aula precisa cobrir</h2><ol class="agenda"><li><b>01</b><span>Vibe Coding: criando soluções com IA sem ser programador</span></li><li><b>02</b><span>IA como copiloto para pensar, testar e construir</span></li><li><b>03</b><span>Leitura e análise de dados com apoio de IA</span></li><li><b>04</b><span>Transformando dados em decisões e ações automáticas</span></li><li><b>05</b><span>Automações simples que economizam horas por semana</span></li><li><b>06</b><span>Integração entre IA, dados e ferramentas do dia a dia</span></li><li><b>07</b><span>Boas práticas para escalar sem complicar</span></li></ol></section><section class="section"><p class="overline">Método AUT3</p><h2>O eixo conceitual da condução</h2><div class="method"><div class="method-card"><h3>Processo estruturado</h3><p>Antes de tecnologia: entender como o processo realmente acontece.</p></div><div class="method-card"><h3>Automações inteligentes</h3><p>Com processo definido, eliminar tarefa manual e conectar ferramentas.</p></div><div class="method-card"><h3>IA em ação</h3><p>Aplicar IA onde melhora receita, velocidade, qualidade ou custo.</p></div></div></section><section class="section"><p class="overline">Referência visual real</p><h2>Slides do material do Carlos usados como base</h2><div class="gallery"><figure><img src="assets/slides/slide-01.jpg" alt="Capa original"><figcaption>Capa original</figcaption></figure><figure><img src="assets/slides/slide-04.jpg" alt="Agenda"><figcaption>Agenda</figcaption></figure><figure><img src="assets/slides/slide-12.jpg" alt="Comparativo RPA · GenAI · Agentes"><figcaption>Comparativo RPA · GenAI · Agentes</figcaption></figure><figure><img src="assets/slides/slide-21.jpg" alt="Áreas de aplicação"><figcaption>Áreas de aplicação</figcaption></figure><figure><img src="assets/slides/slide-22.jpg" alt="Método AUT3"><figcaption>Método AUT3</figcaption></figure><figure><img src="assets/slides/slide-23.jpg" alt="Processo estruturado"><figcaption>Processo estruturado</figcaption></figure><figure><img src="assets/slides/slide-24.jpg" alt="Automações inteligentes"><figcaption>Automações inteligentes</figcaption></figure><figure><img src="assets/slides/slide-25.jpg" alt="IA em ação"><figcaption>IA em ação</figcaption></figure><figure><img src="assets/slides/slide-28.jpg" alt="Make"><figcaption>Make</figcaption></figure><figure><img src="assets/slides/slide-34.jpg" alt="n8n"><figcaption>n8n</figcaption></figure></div></section><section class="content-card"><p class="overline">Roteiro de condução 6h</p><h2>Belém — Imersão 6h v4 com didática das mentorias</h2>
+<h3>Objetivo</h3>
 <p>Letramento + prática com entrega real.</p>
 <p>A turma deve sair com um projeto funcional e com a sensação de que atravessou uma fronteira:</p>
 <blockquote>
 <p>“Eu não apenas usei IA. Eu construí um sistema com IA.”</p>
 </blockquote>
-<h3 id="projeto-base-recomendado">Projeto-base recomendado</h3>
+<h3>Projeto-base recomendado</h3>
 <p><strong>Assistente comercial com diagnóstico e qualificação automática.</strong></p>
 <p>É o melhor projeto-base porque:</p>
 <ul>
@@ -109,7 +18,7 @@
 <li>gera valor comercial claro</li>
 <li>parece produto de verdade ao final</li>
 </ul>
-<h3 id="estrutura-did-tica-de-cada-bloco">Estrutura didática de cada bloco</h3>
+<h3>Estrutura didática de cada bloco</h3>
 <p>Sempre repetir o mesmo ciclo:</p>
 <ol>
 <li>Problema real</li>
@@ -120,8 +29,8 @@
 <li>Valor de negócio</li>
 </ol>
 <p>Esse padrão veio das mentorias: o aluno engaja quando entende o problema, vê funcionando e coloca a própria mão.</p>
-<h3 id="agenda-6h">Agenda 6h</h3>
-<h4 id="0-abertura-o-que-vamos-construir-hoje-20min">0. Abertura — o que vamos construir hoje (20min)</h4>
+<h3>Agenda 6h</h3>
+<h4>0. Abertura — o que vamos construir hoje (20min)</h4>
 <p>Mensagem:</p>
 <p>IA não é o produto. O produto é o sistema que resolve um problema.</p>
 <p>Mostrar a arquitetura final:</p>
@@ -137,7 +46,7 @@
 <li>produzir mensagem comercial</li>
 <li>documentar a solução</li>
 </ul>
-<h4 id="1-letramento-ferramenta-vs-sistema-35min">1. Letramento: ferramenta vs sistema (35min)</h4>
+<h4>1. Letramento: ferramenta vs sistema (35min)</h4>
 <p>Objetivo: mudar a cabeça antes da prática.</p>
 <p>Conceitos:</p>
 <ul>
@@ -158,7 +67,7 @@
 <li>IA = motor de raciocínio dentro do fluxo</li>
 </ul>
 <p>Checkpoint: cada grupo escolhe um nicho e um problema comercial.</p>
-<h4 id="2-lovable-interface-que-vende-a-ideia-55min">2. Lovable: interface que vende a ideia (55min)</h4>
+<h4>2. Lovable: interface que vende a ideia (55min)</h4>
 <p>Objetivo: criar o app visual.</p>
 <p>Explicação:</p>
 <p>Lovable é a camada de interface. Ele transforma a ideia em tela navegável.</p>
@@ -174,7 +83,7 @@
 <p>Prompt-base:</p>
 <p>Criar um aplicativo web de diagnóstico comercial para [NICHO]. O usuário deve preencher nome, empresa, telefone, principal problema, urgência, orçamento aproximado e objetivo. O sistema deve exibir uma tela limpa com diagnóstico, nível de prioridade e próximo passo sugerido.</p>
 <p>Checkpoint: app publicado ou rodando com formulário funcional.</p>
-<h4 id="3-ia-an-lise-e-qualifica-o-50min">3. IA: análise e qualificação (50min)</h4>
+<h4>3. IA: análise e qualificação (50min)</h4>
 <p>Objetivo: fazer o app pensar.</p>
 <p>Explicação:</p>
 <p>A IA entra onde existe linguagem, interpretação, classificação ou decisão.</p>
@@ -193,7 +102,7 @@
 <p>Checkpoint: cada grupo cola dados de teste e recebe uma análise útil, não genérica.</p>
 <p>Frase didática:</p>
 <p>Sem critério, IA escreve bonito. Com critério, IA decide melhor.</p>
-<h4 id="4-supabase-mem-ria-do-sistema-60min">4. Supabase: memória do sistema (60min)</h4>
+<h4>4. Supabase: memória do sistema (60min)</h4>
 <p>Objetivo: transformar demo em sistema.</p>
 <p>Explicação:</p>
 <p>Sem banco, a IA responde e esquece. Com banco, ela vira operação.</p>
@@ -217,7 +126,7 @@
 <p>Checkpoint: salvar pelo menos um lead no banco e visualizar o registro.</p>
 <p>Analogia:</p>
 <p>Supabase é como uma planilha viva, mas preparada para virar sistema.</p>
-<h4 id="5-api-automa-o-a-o-operacional-45min">5. API/Automação: ação operacional (45min)</h4>
+<h4>5. API/Automação: ação operacional (45min)</h4>
 <p>Objetivo: o sistema produzir uma ação real.</p>
 <p>Explicação:</p>
 <p>Sistema bom não só analisa. Ele aciona o próximo passo.</p>
@@ -237,7 +146,7 @@
 <p>Checkpoint: cada grupo tem uma saída operacional pronta.</p>
 <p>Frase didática:</p>
 <p>Automação é quando o sistema para de te informar e começa a trabalhar por você.</p>
-<h4 id="6-github-estrutura-profissional-30min">6. GitHub: estrutura profissional (30min)</h4>
+<h4>6. GitHub: estrutura profissional (30min)</h4>
 <p>Objetivo: mostrar o que separa brincadeira de produto.</p>
 <p>Explicação:</p>
 <p>Profissional versiona, documenta e consegue voltar atrás.</p>
@@ -254,7 +163,7 @@
 <p>Checkpoint: projeto documentado.</p>
 <p>Frase forte:</p>
 <p>Se você não sabe explicar e versionar, você não tem produto. Tem gambiarra funcionando por sorte.</p>
-<h4 id="7-segundo-c-rebro-playbook-transformar-aula-em-ativo-25min">7. Segundo cérebro/playbook: transformar aula em ativo (25min)</h4>
+<h4>7. Segundo cérebro/playbook: transformar aula em ativo (25min)</h4>
 <p>Objetivo: ensinar reaproveitamento.</p>
 <p>Explicação:</p>
 <p>O profissional de IA não começa do zero a cada cliente. Ele cria biblioteca de soluções.</p>
@@ -267,7 +176,7 @@
 <li>onde esse sistema poderia ser vendido</li>
 </ul>
 <p>Checkpoint: cada grupo tem um mini-playbook.</p>
-<h4 id="8-projeto-final-e-apresenta-es-55min">8. Projeto final e apresentações (55min)</h4>
+<h4>8. Projeto final e apresentações (55min)</h4>
 <p>Objetivo: gerar encantamento e fixação.</p>
 <p>Formato:</p>
 <p>Cada grupo apresenta em 3–5 minutos:</p>
@@ -282,7 +191,7 @@
 <blockquote>
 <p>O mercado não vai pagar por “usar IA”. Vai pagar por sistemas que economizam tempo, organizam operação e geram receita.</p>
 </blockquote>
-<h3 id="plano-de-energia-da-aula">Plano de energia da aula</h3>
+<h3>Plano de energia da aula</h3>
 <p>A cada hora o aluno precisa sentir avanço:</p>
 <ul>
 <li>Hora 1: entendi o mapa</li>
@@ -292,7 +201,7 @@
 <li>Hora 5: meu sistema gera ação</li>
 <li>Hora 6: tenho um projeto apresentável</li>
 </ul>
-<h3 id="materiais-para-preparar-antes">Materiais para preparar antes</h3>
+<h3>Materiais para preparar antes</h3>
 <ul>
 <li>slide de arquitetura geral</li>
 <li>prompt-base Lovable</li>
@@ -304,17 +213,17 @@
 <li>checklist do projeto final</li>
 <li>plano B sem integração real, usando simulação guiada</li>
 </ul>
-<h3 id="risco-principal">Risco principal</h3>
+<h3>Risco principal</h3>
 <p>Tentar ensinar ferramenta demais.</p>
 <p>Correção:</p>
 <p>Usar as ferramentas como camadas do mesmo projeto, não como aulas isoladas.</p>
-<h3 id="frase-m-e-da-imers-o">Frase-mãe da imersão</h3>
+<h3>Frase-mãe da imersão</h3>
 <blockquote>
 <p>A diferença entre brincar com IA e construir com IA é ter processo, dados e ação.</p>
-</blockquote></section><section class="doc-card"><div class="section-kicker">Insights didáticos das mentorias</div><h2 id="bel-m-insights-das-mentorias-para-did-tica">Belém — Insights das mentorias para didática</h2>
+</blockquote></section><section class="content-card"><p class="overline">Didática extraída das mentorias</p><h2>Belém — Insights das mentorias para didática</h2>
 <p>Fonte: pasta Google Drive de gravações do Meet. Foram localizadas e exportadas as anotações Gemini das mentorias de Cristiano Mendes, Bruno Afonso, Gustavo Castro e Breno Antônio.</p>
-<h3 id="arquivos-localizados">Arquivos localizados</h3>
-<h4 id="cristiano-mendes">Cristiano Mendes</h4>
+<h3>Arquivos localizados</h3>
+<h4>Cristiano Mendes</h4>
 <ul>
 <li>1/4 — 2026-02-27 — Anotações Gemini + gravação</li>
 <li>2/4 — 2026-03-06 — Anotações Gemini + gravação</li>
@@ -322,12 +231,12 @@
 <li>4/4 — 2026-04-07 — Anotações Gemini + gravação</li>
 </ul>
 <p>Temas: Lovable, Supabase, GitHub, Cursor/Codex, n8n, Meta API, geração de imagem, publicação automática, estoque, conciliação fiscal, Claude Code.</p>
-<h4 id="bruno-afonso">Bruno Afonso</h4>
+<h4>Bruno Afonso</h4>
 <ul>
 <li>1/4 — 2026-03-06 — Anotações Gemini + gravação</li>
 </ul>
 <p>Temas: automação no iFood, agentes de IA, portal de professor de inglês, Lovable, n8n, Asaas, gestão de alunos, agenda, cobrança.</p>
-<h4 id="gustavo-castro">Gustavo Castro</h4>
+<h4>Gustavo Castro</h4>
 <ul>
 <li>1/4 — 2026-02-26 — Anotações Gemini + gravação</li>
 <li>2/4 — 2026-03-05 — Anotações Gemini + gravação</li>
@@ -335,15 +244,15 @@
 <li>4/4 — 2026-03-26 — Anotações Gemini + gravação</li>
 </ul>
 <p>Temas: landing page, Lovable, Cursor, GitHub, robô de resumo de e-mails, Make, Microsoft 365, portal de chamados, Evolution API, n8n, áudio IA, ElevenLabs, ERP Mega.</p>
-<h4 id="breno-ant-nio">Breno Antônio</h4>
+<h4>Breno Antônio</h4>
 <ul>
 <li>2/4 — 2026-03-19 — Anotações Gemini + gravação</li>
 <li>3/4 — 2026-03-26 — Anotações Gemini + gravação</li>
 <li>4/4 — 2026-04-14 — Anotações Gemini + gravação</li>
 </ul>
 <p>Temas: Training Lab, Asaas, Google Agenda, Cloud/Claude, dashboard financeiro, cobranças, automação WhatsApp, Claude Code.</p>
-<h3 id="o-que-funcionou-na-sua-did-tica">O que funcionou na sua didática</h3>
-<h4 id="1-projeto-real-antes-da-ferramenta">1. Projeto real antes da ferramenta</h4>
+<h3>O que funcionou na sua didática</h3>
+<h4>1. Projeto real antes da ferramenta</h4>
 <p>Nas mentorias, a ferramenta quase sempre entra depois do problema concreto.</p>
 <p>Exemplos:</p>
 <ul>
@@ -356,7 +265,7 @@
 <blockquote>
 <p>Começar pelo problema do negócio, não pela tela da plataforma.</p>
 </blockquote>
-<h4 id="2-analogias-simples-para-conceitos-t-cnicos">2. Analogias simples para conceitos técnicos</h4>
+<h4>2. Analogias simples para conceitos técnicos</h4>
 <p>Funcionou bem quando você traduziu tecnologia para referência conhecida.</p>
 <p>Exemplos:</p>
 <ul>
@@ -369,26 +278,26 @@
 <blockquote>
 <p>Toda ferramenta nova precisa entrar com uma analogia de 20 segundos.</p>
 </blockquote>
-<h4 id="3-m-o-na-massa-com-checkpoint-vis-vel">3. Mão na massa com checkpoint visível</h4>
+<h4>3. Mão na massa com checkpoint visível</h4>
 <p>Os alunos reagiram bem quando algo aparecia funcionando na hora: site publicado, e-mail resumido, dashboard ajustado, cobrança organizada, automação disparando.</p>
 <p>Lição para Belém:</p>
 <blockquote>
 <p>A cada bloco de 45–60 min precisa existir uma vitória visível.</p>
 </blockquote>
-<h4 id="4-ensinar-enquanto-executa-n-o-executar-no-lugar-do-aluno">4. Ensinar enquanto executa, não executar no lugar do aluno</h4>
+<h4>4. Ensinar enquanto executa, não executar no lugar do aluno</h4>
 <p>Cristiano verbalizou isso claramente: gostou porque você “se preocupou com ensinar” e deixou ele “pôr a mão na massa”, e isso estimula o cara a fazer.</p>
 <p>Lição para Belém:</p>
 <blockquote>
 <p>O professor demonstra uma vez, depois o aluno replica no próprio projeto.</p>
 </blockquote>
-<h4 id="5-debug-como-parte-da-aula">5. Debug como parte da aula</h4>
+<h4>5. Debug como parte da aula</h4>
 <p>As mentorias tiveram muitos problemas reais: áudio, token, API da Meta, permissão, Unicode, OpenAI sem crédito, node de Evolution, fórmula de filtro no Make.</p>
 <p>Isso não atrapalha a didática se for conduzido como raciocínio.</p>
 <p>Lição para Belém:</p>
 <blockquote>
 <p>Quando algo quebrar, transformar em aula: hipótese → teste → ajuste → validação.</p>
 </blockquote>
-<h4 id="6-valor-econ-mico-sempre-presente">6. Valor econômico sempre presente</h4>
+<h4>6. Valor econômico sempre presente</h4>
 <p>Você frequentemente conecta tecnologia com dinheiro, economia ou produtividade.</p>
 <p>Exemplos:</p>
 <ul>
@@ -402,13 +311,13 @@
 <blockquote>
 <p>Cada ferramenta precisa responder: onde isso economiza tempo, reduz erro ou gera receita?</p>
 </blockquote>
-<h4 id="7-baixo-custo-primeiro-sofistica-o-depois">7. Baixo custo primeiro, sofisticação depois</h4>
+<h4>7. Baixo custo primeiro, sofisticação depois</h4>
 <p>Nas mentorias, você costuma começar pelo viável: Asaas, Google Agenda, Make, Lovable, Supabase, planilha, API pronta. Depois evolui para Claude Code, agentes, n8n, Evolution, integrações robustas.</p>
 <p>Lição para Belém:</p>
 <blockquote>
 <p>Não vender complexidade cedo. Primeiro fazer funcionar. Depois profissionalizar.</p>
 </blockquote>
-<h3 id="padr-o-did-tico-recomendado-para-cada-m-dulo">Padrão didático recomendado para cada módulo</h3>
+<h3>Padrão didático recomendado para cada módulo</h3>
 <ol>
 <li>Problema real: “por que isso importa?”</li>
 <li>Plataforma: “pra que ela serve no sistema?”</li>
@@ -417,7 +326,7 @@
 <li>Checkpoint: “o que precisa estar pronto antes de seguir”</li>
 <li>Valor de negócio: “como isso vira economia, receita ou produto”</li>
 </ol>
-<h3 id="implica-o-para-a-imers-o-de-6h">Implicação para a imersão de 6h</h3>
+<h3>Implicação para a imersão de 6h</h3>
 <p>A estrutura não deve ser:</p>
 <blockquote>
 <p>Lovable → Supabase → API → GitHub → Obsidian → OpenClaw</p>
@@ -436,7 +345,7 @@
 <li>Reutilização: Obsidian/second brain</li>
 <li>Operação avançada: OpenClaw/agentes</li>
 </ol>
-<h3 id="recomenda-o-final">Recomendação final</h3>
+<h3>Recomendação final</h3>
 <p>Para Belém, use um projeto-base guiado, mas deixe cada grupo adaptar o nicho.</p>
 <p>Projeto-base:</p>
 <p><strong>Assistente comercial com diagnóstico e qualificação automática.</strong></p>
@@ -450,8 +359,4 @@
 <li>academia/estúdio</li>
 <li>prestação de serviço B2B</li>
 </ul>
-<p>Assim todo mundo segue o mesmo fluxo técnico, mas sente que construiu algo próprio.</p></section>
-    <p class="footer">Autimize · material independente da imersão de Belém</p>
-  </div>
-</body>
-</html>
+<p>Assim todo mundo segue o mesmo fluxo técnico, mas sente que construiu algo próprio.</p></section><p class="footer">Autimize · material independente da imersão de Belém</p></div></body></html>
